@@ -1,0 +1,418 @@
+*{ margin: 0; box-sizing: border-box;}
+a{ text-decoration: none;}
+img{vertical-align: bottom;}
+:disabled{ cursor: not-allowed;}
+button{ cursor: pointer; padding: 0;}
+ul{ list-style: none; padding: 0;}
+abbr[title]{ text-decoration: underline dotted; -webkit-text-decoration: underline dotted;}
+
+
+html{scroll-behavior: smooth;}
+body{font-family: 'poppins', sans-serif; background: #F7F7F7; }
+
+h1,h2,h3{font-family: "Poppins", sans-serif;}
+
+
+.container{max-width: 1200px; margin: auto; padding: 0 1rem;}
+
+
+.row{ display: flex; flex-flow: row wrap; margin:  0 -1rem; }
+[class^="col-"]{ flex: 1 0 auto; padding: 0 1rem; }
+.col-1{ flex-basis: 8.33%; max-width: 8.33%;}
+.col-2{ flex-basis: 16.66%; max-width: 16.66%;}
+.col-3{ flex-basis: 25%; max-width: 25%;}
+.col-4{ flex-basis: 33.3336%; max-width: 33.3336%;}
+.col-5{ flex-basis: 41.66%; max-width: 41.66%; }
+.col-6{ flex-basis: 50%; max-width: 50%;}
+.col-7{ flex-basis: 58.33%; max-width: 58.33%;}
+.col-8{ flex-basis: 66.66%; max-width: 66.66%;}
+.col-9{ flex-basis: 75%; max-width: 75%;}
+.col-10{ flex-basis: 83.33%; max-width: 83.33%;}
+.col-11{ flex-basis: 91.66%; max-width: 91.66%;}
+.col-12{ flex-basis: 100%; max-width: 100%;}
+.flex{ display: flex; }
+.align-center{ align-items: center;}
+.justify-right{ justify-content: right;}
+.text-center{text-align: center;}
+
+
+/* Header */
+header{padding:  20px;}
+
+header nav ul{
+    display: flex;
+}
+header nav ul li{
+    margin: 0 25px;
+}
+header nav ul li a{font-family: "SVN Gilroy",sans-serif; position: relative; font-weight: bold; color: #003459; font-size: 1rem; transition: color 0.2s;}
+
+header nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #003459;
+    transition: width 0.3s;
+  }
+
+  nav ul li a:hover::after {
+    width: 100%;
+  }
+
+
+header .btn{display: flex; justify-content: right; align-items: center;}
+header .btn button{font-size: 1rem; padding: 7px 28px; font-family: "Poppins Medium", sans-serif; border-radius: 57px; border: 2px solid #003459; text-transform: uppercase; color: #003459; background: transparent;}
+header .cart{margin-left: 2.5rem; cursor: pointer; position: relative;}
+header .cart sub{ color: #003459; font-size: 1rem; max-height: 10px; max-width: 10px; border-radius: 50%; padding: 2px 5px; position: absolute; font-weight: 700; left: 67%; top: -9px;}
+header .cart i{font-size: 1.8rem; font-weight: 500;}
+
+header .navbar{display: flex; align-items: center; justify-content: space-between;}
+
+
+/* Main */
+.main{padding: 60px 0;}
+.main h2{font-size: 4.7rem; text-transform: uppercase; line-height: 1.2; font-family: "Poppins Black",sans-serif;  margin-bottom: 1.5rem;}
+.main .yellow{position: relative; }
+.main .yellow::after{content: ""; position: absolute; width: 150%; height: 80%; background: #F7DBA7; z-index: -1; left: -30px; transform: rotate(-1deg); top: 5px;}
+.main .text-content p{font-size: 1rem; font-family: "Poppins Regular"; margin-bottom: 1.2rem;}
+.main .text-content button{padding: 13px 30px; font-family: "Poppins Regular",sans-serif; border-radius: 7px; background: #000; color: white; font-size: 1.2rem; border: none;} 
+.main img{max-width: 100%; height: auto;}
+
+
+
+
+
+.category{padding: 3rem 0;}
+.category h2{font-size: 2.5rem; font-weight: 600; display: inline-block; margin-bottom: 4rem; letter-spacing: -1px; position: relative;}
+.category h2::after{
+    content: "";
+    width: 60px; 
+    height: 150px;
+    border-radius: 0 80%;
+    position: absolute;
+    top: -40px;
+    z-index: -1;
+    transform: rotate(-80deg);
+    right: 15px;
+    background: #F7DBA7;
+}
+.category .card-content{margin-top: 2.5rem; cursor: pointer; border-top-left-radius: 6px; overflow: hidden; border-top-right-radius: 6px; transition: all .4s ease;}
+.category .card-content:hover{transform: scale(1.02);}
+.category .card-content .img img{
+    max-width:100%; height: auto;
+}
+.category .card-text{padding:  10px 0; }
+.category .card-text h3{font-size: .8rem; margin-bottom: 15px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+.price{display: flex; justify-content: space-between; align-items: center;}
+.price p{font-size: 1rem;}
+
+.card-text button{padding: 10px 5px; font-size: 1rem; background: #003459; font-family: "Poppins Medium", sans-serif; width: 100%; border-radius: 10px; border: none; color: white; margin-top: 1rem;}
+
+.category .items{display: flex; align-items: center; justify-content: center;}
+.category .items button{margin: 0 10px;  border: none; background: transparent; font-size: 1rem; font-weight: 600; font-style: italic;}
+.category .items button:hover{color: #003459;}
+
+
+
+.slider{
+    padding: 3rem 0;
+}
+.slide{padding: 0 10px;}
+.arritext{display: flex; justify-content: center; align-items: center; width: 20%;}
+.title p:nth-child(1){font-weight: 600; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;}
+.title p:nth-child(2){font-weight: 500; font-style: italic; margin-top: 5px;}
+.slider h3{ font-size: 2rem; font-weight: 700; margin-bottom: 4.5rem; position: relative;}
+.slider h3::after{
+    content: "";
+    width: 40px;
+     height: 90px; 
+     right: 15px;
+     z-index: -1;
+     transform: rotate(-80deg);
+     top: -15px;
+     border-radius: 0 80%;
+     position: absolute; 
+     background: #F7DBA7;
+}
+.slider .text-arri{display: flex; align-items: center; justify-content: space-between; padding: 10px;}
+.slider .img {border-radius: 10px; overflow: hidden;}
+.slider .img img{max-width: 100%; height: auto;}
+.slider .arrival-card{cursor: pointer;}
+
+
+
+
+.contact{padding: 2rem 5rem 5rem 5rem; background: #000; color: white;}
+.contact .log{margin-bottom: 3rem;}
+
+.contact .social i{font-size: 1.5rem; margin-right: 1.5rem;}
+.contact .fashion{display: flex; flex-flow: column wrap; justify-content: space-between;}
+.contact .nav-item{display: flex; justify-content: space-between;}
+.contact .nested-nav{
+    margin: 10px 0;
+    display: flex;
+}
+.nested-nav a{
+    color: white;
+    margin: 0 15px;
+    font-size: .9rem;
+    font-weight: 300;
+}
+.nested-nav a:nth-child(1){
+    margin-left: 0;
+}
+
+
+.contact .input{border: 1px solid white;}
+.contact .input input{width: 76%; padding: 10px; background: transparent; outline: none; border: none; font-size: 1rem;}
+
+.contact h5{font-size: 1.5rem; color: white; margin-bottom: 1rem;}
+.contact button{padding: 8px 15px; font-size: 1rem; border: none; background: #F7DBA7; color: black; font-family: "Poppins",sans-serif; width: auto; }
+
+
+.product_image{border-right: 0.5px solid rgb(119, 119, 119); padding: 20px;}
+.product_details{padding: 20px;}
+.product_image img{max-width: 100%; height: 100%; margin-bottom: 10px;}
+.product_title h4{font-size: 1.2rem; font-weight: 600; margin-bottom: 1.4rem; color: #003459;}
+.product_desc p{font-size: 1rem; line-height: 1.8; margin-bottom: 1.1rem; color: #727272;}
+.product_price p{font-size: 1rem; font-weight: 600; color: #003459;}
+
+.product_details button{font-size: 1rem; padding: 10px 20px; border-radius: 5px; background: #003459; color: white; border: none; margin-top: 15px;}
+
+
+
+
+
+.shopping-cart{padding: 40px 30px; border-radius: 6px; margin-top: 1.5rem;}
+.shop-head{display: flex; align-items: center; justify-content: space-between; margin-bottom: 3.5rem;}
+.shop-head h3{font-size: 1.8rem; color: #202020;}
+.shop-head span{font-size: 1rem; font-weight: 600; font-style: italic; color: #3f3f3f;}
+
+
+
+.cart-item{background: white; margin-bottom: 20px; padding: 10px 20px;}
+.image-cart{display: flex; align-items: center; max-width: 20%; }
+.image-cart img{max-width: 100%; height: auto; margin-right: 10px;}
+.image-cart .title{font-size: .8rem; font-weight: 600;   white-space: nowrap; text-overflow: ellipsis;}
+.btn{display: flex;}
+.btn button{padding: 1px 5px; border: .1px solid gray; background: transparent; border-radius: 3px;}
+.btn button:nth-child(1){padding: 1px 7px;}
+.btn span{padding: 2px 8px; font-size: .9rem;}
+.price span{font-size: .8rem; font-weight: 600;}
+.price .remove{font-size: .8rem; padding: 2px 5px; cursor: pointer; font-weight: 600; background: transparent; border: none;}
+
+
+
+/* Sign-Up/Login */
+.signup-card{padding: 50px; margin-top: 4rem; border-radius: 5px; box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;}
+ 
+
+.signup-card h4{font-size: 1.5rem; margin: 0 5px;   text-align: center; margin-bottom: 2rem; cursor: pointer;}
+
+.signup-card input{padding: 10px;  font-size: .9rem; margin-bottom: 20px; width: 100%; border: none;  border-bottom: 2px solid black; outline: none; background: transparent;}
+
+.signup-card input::placeholder{font-size: .8rem;}
+
+.signup-card button{padding: 10px 15px; width: 100%; border: none; font-weight: 600; border-radius: 2px; color: white; background: #003459; margin-top: 10px;}
+
+.signup-card .login p{font-size: .7rem; text-align: center; margin-top: 10px;}
+
+.signup-card .login a{font-weight: 600; cursor: pointer; font-size: .8rem;}
+.signup-card .register-type{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.light{color: #a1a1a1;}
+.dark{color: #003459;}
+
+.localguest{display: flex; align-items: center; justify-content: center; flex-flow: column wrap; margin-top: 5px;}
+.localguest .Or{font-size: .7rem;}
+.localguest .anonymous{font-size: .8rem;}
+.localguest .guest{font-size: 1rem; font-weight: 500; cursor: pointer; margin-left: 2px; color: #003459;}
+
+
+/* Error */
+.error{display: flex; align-items: center; flex-flow: column wrap; margin-top: 4rem;}
+.error h2{font-size: 5rem; line-height: 1.2;}
+.error h3{font-size: 2rem; font-weight: 400;}
+.error p{font-size: .9rem; margin-top: .2rem;}
+.error a{margin-top: .7rem;}
+
+
+
+
+/* Responsive Design */
+
+@media screen and (max-width: 1220px){
+    .main h2{font-size: 3.5rem;}
+    .slider h3 {
+        font-size: 1.8rem;}
+} 
+
+@media screen and (max-width: 980px){
+   
+    header nav ul li{margin: 0 14px;}
+    header nav ul li a{font-size: .89rem;}
+    .btn button:nth-child(1) {
+        padding: 5px 8px;
+    }
+    header .cart i {
+        font-size: 1.2rem;
+        /* font-weight: 500; */
+    }
+    header .cart sub {
+        font-size: .78rem;
+    left: 58%;}
+    header .btn button{font-size: .7rem;}
+    .main h2{font-size: 3rem;}
+    .main .text-content p{font-size:.8rem;}
+    .main .text-content button{
+        padding: 10px 18px;
+    font-size: .8rem;
+    }
+    .title p:nth-child(1){font-size: .7rem;}
+    .title p:nth-child(2){
+        font-size: .65rem;
+    }
+    .slider h3 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 4.5rem;
+        position: relative;
+    }
+    .slider h3::after {
+        content: "";
+        width: 40px;
+        height: 90px;
+        right: 23px;
+        z-index: -1;
+        transform: rotate(-80deg);
+        top: -23px;
+        border-radius: 0 80%;
+        position: absolute;
+        background: #F7DBA7;
+    }
+    .category h2 {
+        font-size: 1.5rem;}
+        .category h2::after {
+            content: "";
+            width: 39px;
+            height: 119px;
+           
+            position: absolute;
+            top: -40px;
+            z-index: -1;
+            transform: rotate(-82deg);
+            right: 15px;
+           
+        }
+
+        .card-text button {
+            padding: 7px 4px;
+            font-size: .7rem;
+            margin-top: .8rem;
+        }
+        .price p{font-size: .8rem}
+
+        .col-ip-6{max-width: 50%; flex-basis: 50%;}
+        .col-ip-3{ flex-basis: 25%; max-width: 25%;}
+        
+
+
+}
+
+@media screen and (max-width:767px){
+    .main h2 {
+        font-size: 2.5rem;
+    }
+    .slider h3 {
+        font-size: 1.2rem;}
+
+
+        .slider h3::after {
+            width: 32px;
+            height: 80px;}
+
+            .title p:nth-child(1) {
+                font-size: .6rem;
+            }
+
+            .category h2 {
+                font-size: 1.3rem;
+            }
+            .col-ml-12{flex-basis: 100%; max-width: 100%;}
+            .col-ml-6{ flex-basis: 50%; max-width: 50%;}
+            .col-ml-4{ flex-basis: 33.3336%; max-width: 33.3336%;}
+            .product_title h4{font-size: 1rem;}
+            .product_desc p{font-size: .9rem;}
+            .product_price p{font-size: .85rem;}
+            .product_details button {
+                font-size: .95rem;
+                padding: 10px 15px}
+                .product_image {
+                    border-right: none}
+                    header nav ul {
+                        display: flex;
+                        display: none;}
+
+
+            
+
+         
+
+            
+
+}
+
+@media screen and (max-width:460px) {
+    .col-mp-6{ flex-basis: 50%; max-width: 50%;}
+    .col-mp-1{ flex-basis: 8.33%; max-width: 8.33%;}
+    .col-mp-12{ flex-basis: 100%; max-width: 100%;}
+    .col-mp-10{ flex-basis: 83.33%; max-width: 83.33%;}
+    header nav{display: none;}
+    header .btn button{display: none;}
+    header .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: right;
+    }
+    header .btn{display: flex; align-items: center; justify-content: right;}
+    .main h2{font-size: 1.6rem; text-align: center; line-height: 1.4;}
+    .main .text-content p{text-align: center;}
+    .main .text-content{text-align: center;}
+    .main img{margin-top: 3rem;}
+    .slider h3{display: block; margin-bottom: 1.6rem;}
+    .arritext{width: 100%;}
+    .category h2 {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+    }
+    .category .items button {font-size: .7rem;}
+
+    .login-card input {
+        font-size: .8rem;}
+
+        .login-card {
+            padding: 24px;}
+
+            .login-card .signup p {margin: 0;}
+
+            .signup-card input{font-size: .8rem;}
+
+            .signup-card .signup p{margin: 0;}
+
+            .signup-card{
+                padding: 24px;
+            }
+   
+    
+}
+
+@media screen and (min-width: 0){
+    .late{font-size: 1rem;}
+}
+

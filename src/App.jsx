@@ -13,6 +13,7 @@ import firebase from './Firebase';
 import { onAuthStateChanged } from 'firebase/auth/web-extension';
 import { getAuth } from 'firebase/auth';
 import { fetchData } from './api';
+import Navbar from './navbar';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -43,6 +44,7 @@ const App = () => {
 
   return (
     <>
+    <Navbar />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={user ? <Home /> : <Signup />} />

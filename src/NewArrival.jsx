@@ -8,51 +8,14 @@ import { useNavigate } from 'react-router-dom';
 
 
 const newArrival=()=>{
-
-  var settings = {
-    infinite: true,
-    dots:true,
-    speed: 500,
-    slidesToShow: 3,
-    lazyload: true,
-    slidesToScroll: 1,
-    
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true
-        }
-      },
-      {
-        breakpoint: 767,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          initialSlide: 2
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  };
    const nav= useNavigate();
   const[data,setData]=useState([])
   const{state,dispatch}=useContext(myContext);
 
 
 
-
   const showProduct=useCallback(()=>{
-    const prod = state.product.filter(item=>item.category.name === "Furniture");
+    const prod = state.product.filter(item=>item.category === "home-decoration");
 setData(prod);
   },[state.product])
  
@@ -64,6 +27,44 @@ setData(prod);
 
 const handleChange=(i)=>{
 nav(`./Products/${i}`)
+};
+
+
+
+
+var settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  initialSlide: 0,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        initialSlide: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+  ]
 };
  
 
@@ -91,7 +92,7 @@ return(
       <div className='slide' key={i}>
       <div className="arrival-card" onClick={()=>handleChange(pro.id)}>
         <div className="img">
-          <img loading='lazy' src={pro.images} alt={pro.title} />
+          <img loading='lazy' src={pro.images[2]} alt={pro.title} />
         </div>
         <div className="text-arri">
           <div className="title">

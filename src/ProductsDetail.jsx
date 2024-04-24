@@ -1,9 +1,10 @@
 import React, { useContext, useState,useEffect, useCallback } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { myContext } from "./main";
 import { lazy } from "react";
 import Slider from "react-slick";
+import { useNavigate } from "react-router-dom";
 
 
 const ProductsDetail = () => {
@@ -16,7 +17,7 @@ const ProductsDetail = () => {
   };
 
 
-
+const nav = useNavigate();
 
   const { id } = useParams();
   const{state,dispatch}=useContext(myContext);
@@ -25,12 +26,22 @@ const ProductsDetail = () => {
 
   const newData = useCallback(async()=>{
     const details = await axios.get(
-      `https://api.escuelajs.co/api/v1/products/${id}`
+      `https://dummyjson.com/products/${id}`
     );
     setData(details.data);
   },[id])
   
 
+  const handleCart=async(i)=>{
+    dispatch({type:"AddCart",payload:i});
+    const res =await axios.get("https://662742a7b625bf088c07cc38.mockapi.io/Cart")
+    const data = res.data;
+    console.log(data)
+    const itemExist = data.find((item)=>item.title === i.title)
+    if(!itemExist){ 
+       await axios.post("https://662742a7b625bf088c07cc38.mockapi.io/Cart",i)
+    }
+}
   // console.log(data);
 
   useEffect(() => {
@@ -70,7 +81,8 @@ const ProductsDetail = () => {
                   <div className="product_price">
                     <p>$ {data.price}.00</p>
                   </div>
-                  <button onClick={()=>dispatch({type:"AddCart",payload:data})}>Add to Cart</button>
+                  <button onClick={()=>handleCart(data)}>Add to Cart</button>
+                  <button onClick={()=>nav("/Cart")}>Go to Cart</button>
                 </div>
               </div>
             </div>

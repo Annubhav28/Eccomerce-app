@@ -1,10 +1,12 @@
 import mainimg from "./assets/images/Frame 90.png";
 import Category from "./Category";
 import Newarrival from "./NewArrival";
+import Navbar from "./navbar";
 
 const Home=()=>{
   return (
    <>
+<Navbar />
   <div className="main">
     <div className="container">
       <div className="row align-center">

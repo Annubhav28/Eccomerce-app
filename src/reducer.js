@@ -18,7 +18,7 @@ const reducer = (state, action) => {
       const FilteredItem =
         category === "All"
           ? state.product
-          : state.product.filter((item) => item.category.name === category);
+          : state.product.filter((item) => item.category === category);
       return { ...state, FilteredItem };
 
     case "AddCart":

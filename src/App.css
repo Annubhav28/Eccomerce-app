@@ -36,8 +36,13 @@ h1,h2,h3{font-family: "Poppins", sans-serif;}
 .text-center{text-align: center;}
 
 
+
+
+
+
+
 /* Header */
-header{padding:  20px;}
+ header{padding:  20px; position: fixed; background: white; z-index: 9999999; left: 0; right: 0; box-shadow: 0px 1px 10px #999 }
 
 header nav ul{
     display: flex;
@@ -68,12 +73,13 @@ header .btn button{font-size: 1rem; padding: 7px 28px; font-family: "Poppins Med
 header .cart{margin-left: 2.5rem; cursor: pointer; position: relative;}
 header .cart sub{ color: #003459; font-size: 1rem; max-height: 10px; max-width: 10px; border-radius: 50%; padding: 2px 5px; position: absolute; font-weight: 700; left: 67%; top: -9px;}
 header .cart i{font-size: 1.8rem; font-weight: 500;}
-
-header .navbar{display: flex; align-items: center; justify-content: space-between;}
+header .links{display: flex; justify-content: space-between;}
+header .cart-btn{display: flex; justify-content: space-between; align-items: center;}
+header .menu{display: none;}
 
 
 /* Main */
-.main{padding: 60px 0;}
+.main{padding: 100px 0;}
 .main h2{font-size: 4.7rem; text-transform: uppercase; line-height: 1.2; font-family: "Poppins Black",sans-serif;  margin-bottom: 1.5rem;}
 .main .yellow{position: relative; }
 .main .yellow::after{content: ""; position: absolute; width: 150%; height: 80%; background: #F7DBA7; z-index: -1; left: -30px; transform: rotate(-1deg); top: 5px;}
@@ -100,7 +106,8 @@ header .navbar{display: flex; align-items: center; justify-content: space-betwee
     background: #F7DBA7;
 }
 .category .card-content{margin-top: 2.5rem; cursor: pointer; border-top-left-radius: 6px; overflow: hidden; border-top-right-radius: 6px; transition: all .4s ease;}
-.category .card-content:hover{transform: scale(1.02);}
+/* .category .card-content:hover{transform: scale(1.02);} */
+.category .card-content .img{height: 250px;  object-fit: cover; overflow: hidden;}
 .category .card-content .img img{
     max-width:100%; height: auto;
 }
@@ -138,9 +145,9 @@ header .navbar{display: flex; align-items: center; justify-content: space-betwee
      background: #F7DBA7;
 }
 .slider .text-arri{display: flex; align-items: center; justify-content: space-between; padding: 10px;}
-.slider .img {border-radius: 10px; overflow: hidden;}
+.slider .img {border-radius: 10px; overflow: hidden; height: 335px;}
 .slider .img img{max-width: 100%; height: auto;}
-.slider .arrival-card{cursor: pointer;}
+.slider .arrival-card{cursor: grab;}
 
 
 
@@ -180,7 +187,7 @@ header .navbar{display: flex; align-items: center; justify-content: space-betwee
 .product_desc p{font-size: 1rem; line-height: 1.8; margin-bottom: 1.1rem; color: #727272;}
 .product_price p{font-size: 1rem; font-weight: 600; color: #003459;}
 
-.product_details button{font-size: 1rem; padding: 10px 20px; border-radius: 5px; background: #003459; color: white; border: none; margin-top: 15px;}
+.product_details button{font-size: 1rem; padding: 10px 20px; border-radius: 5px; background: #003459; color: white; border: none; margin-top: 15px; margin-right: 15px;}
 
 
 
@@ -241,6 +248,10 @@ header .navbar{display: flex; align-items: center; justify-content: space-betwee
 .error h3{font-size: 2rem; font-weight: 400;}
 .error p{font-size: .9rem; margin-top: .2rem;}
 .error a{margin-top: .7rem;}
+
+
+.nav{display: flex; align-items: center; justify-content: space-between;}
+.menu i{font-size: 1.5rem;}
 
 
 
@@ -326,6 +337,7 @@ header .navbar{display: flex; align-items: center; justify-content: space-betwee
 }
 
 @media screen and (max-width:767px){
+    .main{padding: 80px 0 40px 0;}
     .main h2 {
         font-size: 2.5rem;
     }
@@ -355,9 +367,9 @@ header .navbar{display: flex; align-items: center; justify-content: space-betwee
                 padding: 10px 15px}
                 .product_image {
                     border-right: none}
-                    header nav ul {
+                    /* header nav ul {
                         display: flex;
-                        display: none;}
+                        display: none;} */
 
 
             
@@ -373,8 +385,8 @@ header .navbar{display: flex; align-items: center; justify-content: space-betwee
     .col-mp-1{ flex-basis: 8.33%; max-width: 8.33%;}
     .col-mp-12{ flex-basis: 100%; max-width: 100%;}
     .col-mp-10{ flex-basis: 83.33%; max-width: 83.33%;}
-    header nav{display: none;}
-    header .btn button{display: none;}
+    
+
     header .navbar {
         display: flex;
         align-items: center;
@@ -408,6 +420,18 @@ header .navbar{display: flex; align-items: center; justify-content: space-betwee
             .signup-card{
                 padding: 24px;
             }
+header .menu{display: block;}
+
+
+            /* header .links{display: none; } */
+            .m-flex{display: flex; justify-content: right;}
+            
+            header .links{display: none; flex-flow: column wrap; position: absolute; top: 60px; gap: 20px; z-index: 99999; background: white; right: 0; left: 0; align-items: center; box-shadow: 0px 3.5px 3px #999; padding: 20px 15px; transition: all 0.2s ease;}
+            header .links.open{display: flex;}
+            header .btn{display: flex; flex-flow: column wrap; gap: 10px;}
+            header .cart{display: none;}
+            header .cart-btn{flex-flow: column wrap; gap: 20px;}
+            header nav ul{flex-flow: column wrap; gap: 15px; align-items: center;}
    
     
 }
@@ -415,4 +439,12 @@ header .navbar{display: flex; align-items: center; justify-content: space-betwee
 @media screen and (min-width: 0){
     .late{font-size: 1rem;}
 }
+
+
+
+
+
+
+
+/* responsive navbar */
 

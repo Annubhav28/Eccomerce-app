@@ -22,6 +22,7 @@ const handleCart=async(i)=>{
         dispatch({type:"AddCart",payload:i});
         const res =await axios.get("https://662742a7b625bf088c07cc38.mockapi.io/Cart")
         const data = res.data;
+        // console.log(data)
         const itemExist = data.find((item)=>item.title === i.title)
         if(!itemExist){ 
            await axios.post("https://662742a7b625bf088c07cc38.mockapi.io/Cart",i)
@@ -47,9 +48,12 @@ const handleCart=async(i)=>{
           <div className="col-12">
             <div className="items">
                 <button onClick={()=>dispatch({type:"Filtered",payload:"All"})}>All</button>
-                <button onClick={()=>dispatch({type:"Filtered",payload:"Clothes"})}>Clothes</button>
-                <button onClick={()=>dispatch({type:"Filtered",payload:"Furniture"})}>Furniture</button>
-                <button onClick={()=>dispatch({type:"Filtered",payload:"Electronics"})}>Electronics</button>
+                <button onClick={()=>dispatch({type:"Filtered",payload:"smartphones"})}>Smartphone</button>
+                <button onClick={()=>dispatch({type:"Filtered",payload:"laptops"})}>Laptops</button>
+                <button onClick={()=>dispatch({type:"Filtered",payload:"groceries"})}>Groceries</button>
+                <button onClick={()=>dispatch({type:"Filtered",payload:"fragrances"})}>Fragrances</button>
+                <button onClick={()=>dispatch({type:"Filtered",payload:"home-decoration"})}>Home Decor</button>
+                <button onClick={()=>dispatch({type:"Filtered",payload:"skincare"})}>Skin Care</button>
                
             </div>
           </div>
@@ -62,7 +66,7 @@ const handleCart=async(i)=>{
                     <div key={i} className="col-3 col-ml-4 col-mp-6">
             <div className="card-content">
                 <div className="img" onClick={()=>handleId(item.id)}>
-                    <img loading="lazy" src={item.images} alt="" />
+                    <img loading="lazy" src={item.images[0]} alt="" />
                 </div>
                 <div className="card-text">
                     <h3>{item.title}</h3>

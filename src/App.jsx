@@ -1,70 +1,60 @@
-import { Route,Routes } from 'react-router-dom';
-import './App.css'
-import {  useEffect,useCallback, useContext, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import './App.css';
+import { useEffect, useCallback, useContext, useState } from 'react';
+import Home from './Home';
+import Signup from './Signup';
+import ProductsDetail from './ProductsDetail';
+import Cart from './Cart';
+import Category from './Category';
+import Error from './error';
 import { myContext } from './main';
-import firebase from "./Firebase"
+import { BrowserRouter } from 'react-router-dom';
+import firebase from './Firebase';
 import { onAuthStateChanged } from 'firebase/auth/web-extension';
 import { getAuth } from 'firebase/auth';
-import { lazy,Suspense } from 'react';
 import { fetchData } from './api';
 
+const App = () => {
+  const [user, setUser] = useState(null);
+  const { dispatch } = useContext(myContext);
 
+  const newdata = useCallback(async () => {
+    const data = await fetchData();
 
-const Home = lazy(()=>import("./Home"))
-const Navbar = lazy(()=>import("./navbar"))
-const Signup = lazy(()=>import("./Signup"))
-const ProductsDetail = lazy(()=>import("./ProductsDetail"))
-const Cart = lazy(()=>import("./Cart"))
-const Category = lazy(()=>import("./Category"))
-const Error = lazy(()=>import("./error"))
+    dispatch({ type: 'PRODUCTS', payload: data.products });
+  }, [dispatch]);
 
-const App=()=>{
-  const[user,setUser]=useState(null);
-const{dispatch}=useContext(myContext)
- const newdata=useCallback(async()=>{
-  const data = await fetchData();
-  dispatch({type:"PRODUCTS",payload:data})
-  // console.log(res.data)
- },[dispatch])
+  const userName = useCallback(async () => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
+  }, []);
 
+  useEffect(() => {
+    userName();
+    newdata();
+    return () => userName();
+  }, [userName, newdata]);
 
- const userName=async()=>{
- const auth =getAuth();
-  auth.onAuthStateChanged((user) => {
-    if (user) {
-      setUser(user)
-      // ...
-    } else {
-     setUser(null)
-    }
-  });
- }
-
-useEffect(()=>{
-  userName()
-newdata()
-return () => userName();
-},[])
-
-
-// console.log(state.Cart)
   return (
     <>
-
-
-<Navbar/>
-<Suspense fallback={<div>Loading...</div>}>
-<Routes>
-<Route path='/' element={user ? <Home/> : <Signup/>}/>
-<Route path='/Category' element={ user ?  <Category/> : <Signup/>}/>
-<Route path='/Products/:id' element={user ? <ProductsDetail/> : <Signup/>}/>
-<Route path='/Cart' element={user ?  <Cart /> : <Signup/>}/>
-<Route path="/Signup" element={<Signup />}/>
-<Route path="*" element={<Error/>}/>
-     </Routes>
-</Suspense>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={user ? <Home /> : <Signup />} />
+          <Route path="/Category" element={user ? <Category /> : <Signup />} />
+          <Route path="/Products/:id" element={user ? <ProductsDetail /> : <Signup />} />
+          <Route path="/Cart" element={user ? <Cart /> : <Signup />} />
+          <Route path="/Signup" element={<Signup />} />
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </BrowserRouter>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

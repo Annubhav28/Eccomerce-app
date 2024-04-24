@@ -1,7 +1,7 @@
 import React, { useContext, useState,useEffect, useCallback } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { myContext } from "./main";
+import { myContext } from "./App";
 import { lazy } from "react";
 import Slider from "react-slick";
 import { useNavigate } from "react-router-dom";

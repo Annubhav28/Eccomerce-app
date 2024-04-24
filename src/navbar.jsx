@@ -2,11 +2,12 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "./assets/images/Frame 75.svg";
 import cart from "./assets/images/shopping-bag.png";
 import { useContext, useEffect, useState } from "react";
-import { myContext } from "./main";
+import { myContext } from "./App";
 import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 
 const Navbar = () => {
-  const{state,dispatch} = useContext(myContext);
+  const{state} = useContext(myContext);
+  // console.log(state);
   const[istoggle,setToggle]=useState(false)
   const[user, setUser] = useState(null);
  
@@ -88,7 +89,7 @@ const Navbar = () => {
             </div>
             <span onClick={handleNav} className="cart">
               <i className="ri-shopping-cart-line"></i>
-              <sub>{user && state.Cart.length}</sub>
+              <sub>{user && state.Cart?.length}</sub>
             </span>
             </div>
           </div>

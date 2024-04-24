@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { myContext } from "./main";
+import { myContext } from "./App";
 import { useNavigate } from "react-router-dom";
 import { MockApi,} from "./Mockapi";
 import axios from "axios";
@@ -66,7 +66,7 @@ const handleCart=async(i)=>{
                     <div key={i} className="col-3 col-ml-4 col-mp-6">
             <div className="card-content">
                 <div className="img" onClick={()=>handleId(item.id)}>
-                    <img loading="lazy" src={item.images[0]} alt="" />
+                    <img loading="lazy" src={item.images[0]} height="250" width="250" alt="" />
                 </div>
                 <div className="card-text">
                     <h3>{item.title}</h3>

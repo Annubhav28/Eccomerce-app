@@ -1,7 +1,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useContext } from 'react';
-import {myContext} from "./main"
+import {myContext} from "./App"
 import Slider from "react-slick";
 
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +10,8 @@ import { useNavigate } from 'react-router-dom';
 const newArrival=()=>{
    const nav= useNavigate();
   const[data,setData]=useState([])
-  const{state,dispatch}=useContext(myContext);
+  const {state}  = useContext(myContext);
+  console.log(state)
 
 
 

@@ -106,10 +106,11 @@ header .menu{display: none;}
     background: #F7DBA7;
 }
 .category .card-content{margin-top: 2.5rem; cursor: pointer; border-top-left-radius: 6px; overflow: hidden; border-top-right-radius: 6px; transition: all .4s ease;}
-/* .category .card-content:hover{transform: scale(1.02);} */
-.category .card-content .img{height: 250px;  object-fit: cover; overflow: hidden;}
-.category .card-content .img img{
-    max-width:100%; height: auto;
+.category .card-content:hover{transform: scale(1.02);}
+.category .card-content .img{height: 250px;  padding: 20px;}
+.category .card-content .img img{ 
+    width: 250px; height: 200px;
+    object-fit: contain;
 }
 .category .card-text{padding:  10px 0; }
 .category .card-text h3{font-size: .8rem; margin-bottom: 15px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }

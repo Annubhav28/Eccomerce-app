@@ -66,7 +66,7 @@ const handleCart=async(i)=>{
                     <div key={i} className="col-3 col-ml-4 col-mp-6">
             <div className="card-content">
                 <div className="img" onClick={()=>handleId(item.id)}>
-                    <img loading="lazy" src={item.images[0]} height="250" width="250" alt="" />
+                    <img loading="lazy" src={item.images[0]} height="190" width="200" alt="" />
                 </div>
                 <div className="card-text">
                     <h3>{item.title}</h3>

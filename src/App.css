@@ -107,9 +107,9 @@ header .menu{display: none;}
 }
 .category .card-content{margin-top: 2.5rem; cursor: pointer; border-top-left-radius: 6px; overflow: hidden; border-top-right-radius: 6px; transition: all .4s ease;}
 .category .card-content:hover{transform: scale(1.02);}
-.category .card-content .img{height: 250px;  padding: 20px;}
-.category .card-content .img img{ 
-    width: 250px; height: 200px;
+.category .card-content .img{height: 190px; width: 200px;}
+.category .card-content .img img{
+    
     object-fit: contain;
 }
 .category .card-text{padding:  10px 0; }
@@ -147,7 +147,7 @@ header .menu{display: none;}
 }
 .slider .text-arri{display: flex; align-items: center; justify-content: space-between; padding: 10px;}
 .slider .img {border-radius: 10px; overflow: hidden; height: 335px;}
-.slider .img img{max-width: 100%; height: auto;}
+.slider .img img{max-width: 100%; height: auto; object-fit: contain;}
 .slider .arrival-card{cursor: grab;}
 
 
@@ -203,7 +203,7 @@ header .menu{display: none;}
 
 .cart-item{background: white; margin-bottom: 20px; padding: 10px 20px;}
 .image-cart{display: flex; align-items: center; max-width: 20%; }
-.image-cart img{max-width: 100%; height: auto; margin-right: 10px;}
+.image-cart img{max-width: 100%; height: auto; margin-right: 10px; object-fit: contain;}
 .image-cart .title{font-size: .8rem; font-weight: 600;   white-space: nowrap; text-overflow: ellipsis;}
 .btn{display: flex;}
 .btn button{padding: 1px 5px; border: .1px solid gray; background: transparent; border-radius: 3px;}
@@ -266,7 +266,7 @@ header .menu{display: none;}
 } 
 
 @media screen and (max-width: 980px){
-   
+    .col-ip-4{ flex-basis: 33.3336%; max-width: 33.3336%;}
     header nav ul li{margin: 0 14px;}
     header nav ul li a{font-size: .89rem;}
     .btn button:nth-child(1) {
@@ -384,6 +384,9 @@ header .menu{display: none;}
 @media screen and (max-width:460px) {
     .col-mp-6{ flex-basis: 50%; max-width: 50%;}
     .col-mp-1{ flex-basis: 8.33%; max-width: 8.33%;}
+    .col-mp-3{ flex-basis: 25%; max-width: 25%;}
+    .col-mp-5{ flex-basis: 41.66%; max-width: 41.66%; }
+    .col-mp-4{ flex-basis: 33.3336%; max-width: 33.3336%;}
     .col-mp-12{ flex-basis: 100%; max-width: 100%;}
     .col-mp-10{ flex-basis: 83.33%; max-width: 83.33%;}
     
@@ -404,7 +407,10 @@ header .menu{display: none;}
         font-size: 1.3rem;
         margin-bottom: 2rem;
     }
-    .category .items button {font-size: .7rem;}
+    .category .items button {font-size: 9px; margin: 0 3px;}
+
+    .cart-item .btn{padding: 1px;}
+    
 
     .login-card input {
         font-size: .8rem;}

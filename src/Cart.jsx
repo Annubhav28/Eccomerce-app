@@ -38,7 +38,7 @@ setCart(cart.filter((item)=>item.id !== i))
   <>
  <div className="container">
   <div className="row">
-    <div className="col-7">
+    <div className="col-7 col-ml-12 col-mp-12">
     <div className="shopping-cart">
       <div className="shop-head">
         <h3>Shopping Cart</h3>
@@ -49,16 +49,16 @@ setCart(cart.filter((item)=>item.id !== i))
     return(
       <div className="cart-item" key={item.id}>
       <div className="row align-center">
-       <div className="col-8">
+       <div className="col-8 col-ip-4 col-ml-4 col-mp-4">
          <div className="image-cart">
-           <img loading='lazy' src={item.images[0]} alt={item.title} />
+           <img loading='lazy' src={item.images[0]} alt={item.title} height="20" width="30" />
            <div className="title">{item.title}</div>
          </div>
        </div>
-       <div className="col-2">
+       <div className="col-2 col-ip-4 col-ml-4 col-mp-4">
          <div className="btn"><button>-</button><span className="qua">1</span><button>+</button></div>
        </div>
-       <div className="col-2">
+       <div className="col-2 col-ip-4 col-ml-4 col-mp-4">
          <div className="price">
            <span>$ {item.price}</span>
            <button onClick={()=>handleDelete(item.id)} className='remove'>X</button>

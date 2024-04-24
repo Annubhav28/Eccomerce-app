@@ -93,7 +93,7 @@ return(
       <div className='slide' key={i}>
       <div className="arrival-card" onClick={()=>handleChange(pro.id)}>
         <div className="img">
-          <img loading='lazy' src={pro.images[2]} alt={pro.title} />
+          <img loading='lazy' src={pro.images[2]} alt={pro.title} height="400" width="400" />
         </div>
         <div className="text-arri">
           <div className="title">

@@ -63,7 +63,7 @@ const nav = useNavigate();
                     {data.images.map((item, i) => {
                       return (
                         <div key={i}>
-                          <img loading="lazy" src={item} alt={data.title}></img>
+                          <img loading="lazy" height="400" width="400" src={item} alt={data.title}></img>
                         </div>
                       );
                     })}

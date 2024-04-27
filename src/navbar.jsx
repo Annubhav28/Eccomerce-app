@@ -16,19 +16,21 @@ const Navbar = () => {
   const handleNav = () => {
     nav("./Cart");
   };
-
+const handleSignIn=()=>{
+  nav("/Signup")
+}
 
 
   useEffect(() => {
     const auth = getAuth();
     const unmount = auth.onAuthStateChanged((user) => {
+      // console.log(user)
       if (user) {
         setUser(user);
       }
     });
-
     return unmount;
-  }, [onAuthStateChanged]);
+  },[]);
 
   const handleSignOut = () => {
     const auth = getAuth();
@@ -48,7 +50,7 @@ const Navbar = () => {
     <>
       <header className="wrap-1">
         <div className="container">
-      <div className="row">
+      <div className="row align-center">
             <div className="col-3">
             <div className="logo">
             <Link to="/">
@@ -64,10 +66,10 @@ const Navbar = () => {
             <nav>
               <ul>
                 <li>
-                  <Link to="/">Home</Link>
+                  <Link to="/" onClick={()=>setToggle(false)}>Home</Link>
                 </li>
                 <li>
-                  <Link to="/Category">Category</Link>
+                  <Link to="/Category" onClick={()=>setToggle(false)}>Category</Link>
                 </li>
               </ul>
             </nav>
@@ -85,12 +87,14 @@ const Navbar = () => {
                     Sign Out
                   </button>
                 </>
-              ) : null}
+              ) : <button onClick={handleSignIn}>Sign Up</button>}
             </div>
-            <span onClick={handleNav} className="cart">
+            {
+              user ?  <span onClick={handleNav} className="cart">
               <i className="ri-shopping-cart-line"></i>
-              <sub>{user && state.Cart?.length}</sub>
-            </span>
+              <sub>{user && state.Cart && state.Cart.length}</sub>
+            </span> : <div></div>
+            }
             </div>
           </div>
           </div>

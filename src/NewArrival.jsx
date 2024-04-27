@@ -11,7 +11,7 @@ const newArrival=()=>{
    const nav= useNavigate();
   const[data,setData]=useState([])
   const {state}  = useContext(myContext);
-  console.log(state)
+  // console.log(state)
 
 
 

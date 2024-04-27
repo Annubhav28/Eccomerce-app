@@ -1,12 +1,14 @@
 import axios from "axios";
+import { useId } from "react";
 const is = {
   product: [],
   FilteredItem: [],
   Cart: [],
+  User:{}
 };
 
 const reducer = (state, action) => {
-  // console.log(state,action);
+  // console.log(action);
   switch (action.type) {
     case "PRODUCTS":
       return { ...state, product: action.payload,FilteredItem:action.payload };
@@ -40,6 +42,10 @@ const reducer = (state, action) => {
      return {
       ...state,Cart:prod
      }
+
+     case "Uid" : 
+    //  console.log(action.payload)
+     return {...state,User:action.payload};
 
 
     default:

@@ -12,17 +12,17 @@ const App = () => {
  
 
 
-  const newdata = useCallback(async () => {
+  const newdata =async () => {
     
     const data = await fetchData();
     dispatch({ type: 'PRODUCTS', payload: data.products });
-  }, [dispatch]);
+  };
 
  
 
   useEffect(() => {
     newdata();
-  }, [newdata]);
+  }, []);
 
   return (
     <>

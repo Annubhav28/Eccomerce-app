@@ -1,13 +1,15 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { myContext } from "./App";
 import { useNavigate } from "react-router-dom";
 import { MockApi,} from "./Mockapi";
+import { getAuth,onAuthStateChanged } from "firebase/auth";
 import axios from "axios";
 
 
 const Category=()=>{
 // const[itemAdded,setItem]=useState("");
 const{state,dispatch}=useContext(myContext);
+const[avail,setUser] = useState(null);
 
  
 
@@ -17,15 +19,37 @@ const handleId=(i)=>{
     nav(`/Products/${i}`);
 }
 
+useEffect(()=>{
+    const userName=async()=>{
+        const auth = getAuth();
+        auth.onAuthStateChanged((user)=>{
+            console.log(user)
+            if(user){
+                setUser(user.uid)
+                dispatch({type: "Uid", payload: user.uid})
+            }
+            else{
+                setUser(null)
+            }
+        })
+    }
+   userName();
+},[]);
+
 
 const handleCart=async(i)=>{
+//    console.log(i)
         dispatch({type:"AddCart",payload:i});
-        const res =await axios.get("https://662742a7b625bf088c07cc38.mockapi.io/Cart")
+        const res =await axios.get(`https://662742a7b625bf088c07cc38.mockapi.io/Cart/?${state.User}`)
+        // console.log(res)
         const data = res.data;
         // console.log(data)
         const itemExist = data.find((item)=>item.title === i.title)
         if(!itemExist){ 
-           await axios.post("https://662742a7b625bf088c07cc38.mockapi.io/Cart",i)
+           await axios.post(`https://662742a7b625bf088c07cc38.mockapi.io/Cart/?${state.User}`,i)
+        }
+        else{
+            console.log("already added")
         }
     }
 
@@ -54,7 +78,6 @@ const handleCart=async(i)=>{
                 <button onClick={()=>dispatch({type:"Filtered",payload:"fragrances"})}>Fragrances</button>
                 <button onClick={()=>dispatch({type:"Filtered",payload:"home-decoration"})}>Home Decor</button>
                 <button onClick={()=>dispatch({type:"Filtered",payload:"skincare"})}>Skin Care</button>
-               
             </div>
           </div>
         </div>
@@ -77,7 +100,7 @@ const handleCart=async(i)=>{
 {/* {
     itemAdded === item.id? <button>Go to Cart</button> : <button onClick={()=>handleCart(item)}>Add to Cart</button> 
 } */}
-                    <button onClick={()=>handleCart(item)}>Add to Cart</button>
+                    <button type="button" onClick={()=>handleCart(item)}>Add to Cart</button>
                    
 
                 </div>

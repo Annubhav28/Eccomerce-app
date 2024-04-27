@@ -73,7 +73,7 @@ header .btn button{font-size: 1rem; padding: 7px 28px; font-family: "Poppins Med
 header .cart{margin-left: 2.5rem; cursor: pointer; position: relative;}
 header .cart sub{ color: #003459; font-size: 1rem; max-height: 10px; max-width: 10px; border-radius: 50%; padding: 2px 5px; position: absolute; font-weight: 700; left: 67%; top: -9px;}
 header .cart i{font-size: 1.8rem; font-weight: 500;}
-header .links{display: flex; justify-content: space-between;}
+header .links{display: flex; justify-content: space-between; align-items: center;}
 header .cart-btn{display: flex; justify-content: space-between; align-items: center;}
 header .menu{display: none;}
 
@@ -107,7 +107,7 @@ header .menu{display: none;}
 }
 .category .card-content{margin-top: 2.5rem; cursor: pointer; border-top-left-radius: 6px; overflow: hidden; border-top-right-radius: 6px; transition: all .4s ease;}
 .category .card-content:hover{transform: scale(1.02);}
-.category .card-content .img{height: 190px; width: 200px;}
+.category .card-content .img{height: 190px; width: 200px; display: flex; align-items: center; justify-content: end;}
 .category .card-content .img img{
     
     object-fit: contain;
@@ -194,7 +194,7 @@ header .menu{display: none;}
 
 
 
-.shopping-cart{padding: 40px 30px; border-radius: 6px; margin-top: 1.5rem;}
+.shopping-cart{padding: 80px 30px; border-radius: 6px; margin-top: 1.5rem;}
 .shop-head{display: flex; align-items: center; justify-content: space-between; margin-bottom: 3.5rem;}
 .shop-head h3{font-size: 1.8rem; color: #202020;}
 .shop-head span{font-size: 1rem; font-weight: 600; font-style: italic; color: #3f3f3f;}
@@ -211,6 +211,11 @@ header .menu{display: none;}
 .btn span{padding: 2px 8px; font-size: .9rem;}
 .price span{font-size: .8rem; font-weight: 600;}
 .price .remove{font-size: .8rem; padding: 2px 5px; cursor: pointer; font-weight: 600; background: transparent; border: none;}
+.column{
+    flex-flow: column wrap;
+}
+.total{margin-left: 18px; font-weight: 700; margin-top: 10px;}
+.totalprice{display: flex; gap: 10px; align-items: center;}
 
 
 
@@ -407,9 +412,12 @@ header .menu{display: none;}
         font-size: 1.3rem;
         margin-bottom: 2rem;
     }
-    .category .items button {font-size: 9px; margin: 0 3px;}
+    .category .items button {font-size: 9px; margin: 0 3px; border: .1px solid grey;}
 
     .cart-item .btn{padding: 1px;}
+
+    .shop-head h3 {font-size: 1rem;}
+    .shop-head span{font-size: .8rem;}
     
 
     .login-card input {
@@ -433,7 +441,7 @@ header .menu{display: block;}
             /* header .links{display: none; } */
             .m-flex{display: flex; justify-content: right;}
             
-            header .links{display: none; flex-flow: column wrap; position: absolute; top: 60px; gap: 20px; z-index: 99999; background: white; right: 0; left: 0; align-items: center; box-shadow: 0px 3.5px 3px #999; padding: 20px 15px; transition: all 0.2s ease;}
+            header .links{display: none; flex-flow: column wrap; position: absolute; top: 60px; gap: 20px; z-index: 99999; background: white; right: 0; left: 0; align-items: center; box-shadow: 0px 3.5px 3px #999; padding: 20px 15px; transition: all 0.4s ease-in-out;}
             header .links.open{display: flex;}
             header .btn{display: flex; flex-flow: column wrap; gap: 10px;}
             header .cart{display: none;}

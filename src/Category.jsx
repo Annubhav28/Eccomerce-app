@@ -23,13 +23,12 @@ useEffect(()=>{
     const userName=async()=>{
         const auth = getAuth();
         auth.onAuthStateChanged((user)=>{
-            console.log(user)
             if(user){
-                setUser(user.uid)
-                dispatch({type: "Uid", payload: user.uid})
+                setUser(user.email)
+                dispatch({type: "Email", payload: user.email})
             }
             else{
-                setUser(null)
+                setUser(null);
             }
         })
     }
@@ -37,16 +36,16 @@ useEffect(()=>{
 },[]);
 
 
-const handleCart=async(i)=>{
-//    console.log(i)
-        dispatch({type:"AddCart",payload:i});
-        const res =await axios.get(`https://662742a7b625bf088c07cc38.mockapi.io/Cart/?${state.User}`)
+const handleCart=async(id)=>{
+//    console.log(id)
+        dispatch({type:"AddCart",payload:id});
+        const res =await axios.get(`https://662742a7b625bf088c07cc38.mockapi.io/Cart`);
         // console.log(res)
         const data = res.data;
         // console.log(data)
-        const itemExist = data.find((item)=>item.title === i.title)
-        if(!itemExist){ 
-           await axios.post(`https://662742a7b625bf088c07cc38.mockapi.io/Cart/?${state.User}`,i)
+    const itemAvail = data.find((item)=>item.proid === id && item.Email === avail);
+        if(!itemAvail){ 
+           await axios.post(`https://662742a7b625bf088c07cc38.mockapi.io/Cart`,{proid:id,Email:avail});
         }
         else{
             console.log("already added")
@@ -100,7 +99,7 @@ const handleCart=async(i)=>{
 {/* {
     itemAdded === item.id? <button>Go to Cart</button> : <button onClick={()=>handleCart(item)}>Add to Cart</button> 
 } */}
-                    <button type="button" onClick={()=>handleCart(item)}>Add to Cart</button>
+                    <button type="button" onClick={()=>handleCart(item.id)}>Add to Cart</button>
                    
 
                 </div>

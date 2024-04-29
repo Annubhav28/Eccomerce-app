@@ -4,7 +4,7 @@ const is = {
   product: [],
   FilteredItem: [],
   Cart: [],
-  User:{}
+  Email:""
 };
 
 const reducer = (state, action) => {
@@ -43,9 +43,9 @@ const reducer = (state, action) => {
       ...state,Cart:prod
      }
 
-     case "Uid" : 
+     case "Email" : 
     //  console.log(action.payload)
-     return {...state,User:action.payload};
+     return {...state,Email:action.payload};
 
 
     default:

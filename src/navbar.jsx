@@ -7,7 +7,7 @@ import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 
 const Navbar = () => {
   const{state} = useContext(myContext);
-  const[count,setCount]=useState(0);
+  const[count,setCount]=useState();
   const[istoggle,setToggle]=useState(false)
   const[user, setUser] = useState(null);
  
@@ -19,6 +19,10 @@ const Navbar = () => {
 const handleSignIn=()=>{
   nav("/Signup")
 }
+const updateCount=()=>{
+  // console.log(state.Cart.length)
+  setCount(state.Cart.length);
+}
 
 
   useEffect(() => {
@@ -29,7 +33,8 @@ const handleSignIn=()=>{
         setUser(user);
       }
     });
-    setCount(state.Cart.length);
+  updateCount();
+    
     return unmount;
   },[state.Cart]);
 

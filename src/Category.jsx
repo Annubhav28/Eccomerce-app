@@ -19,12 +19,17 @@ const handleId=(i)=>{
     nav(`/Products/${i}`);
 }
 
-const cartLength=async()=>{
-    if(avail !== null){
-        const res = await axios.get(`https://662742a7b625bf088c07cc38.mockapi.io/Cart?Email=${avail}`);
-        const newData = res.data;
-        // console.log(newData)
-        dispatch({type:"AddCart",payload:newData});
+ const cartLength=async()=>{
+    try{
+        if(avail !== null){
+            const res = await axios.get(`https://662742a7b625bf088c07cc38.mockapi.io/Cart?Email=${avail}`);
+            const newData = res.data;
+            // console.log(newData)
+            dispatch({type:"AddCart",payload:newData});
+        }
+    }
+    catch(error){
+        console.log(error)
     }
 }
 

@@ -17,20 +17,29 @@ const Cart=()=> {
   
 // console.log(state);
 
-  const cartShow=async()=>{
-    if(avail !== null){
-        const res = await axios.get(`https://662742a7b625bf088c07cc38.mockapi.io/Cart?Email=${avail.email}`);
-        const newData = res.data;
-        // console.log(newData)
+const cartShow = async () => {
+  try {
+      if (avail !== null) {
+          const res = await axios.get(`https://662742a7b625bf088c07cc38.mockapi.io/Cart?Email=${avail.email}`);
+          const newData = res.data;
 
-        const cartData = await Promise.all(newData.map(async (item) => {
-          const product = await axios.get(`https://dummyjson.com/products/${item.proid}`);
-          return { ...product.data, Cartid: item.id };
-        }));
-  
-        setCart(cartData); 
+          const cartData = await Promise.all(newData.map(async (item) => {
+              try {
+                  const product = await axios.get(`https://dummyjson.com/products/${item.proid}`);
+                  return { ...product.data, Cartid: item.id };
+              } catch (error) {
+                  console.error(error);
+                  return null;
+              }
+          }));
+
+          setCart(cartData.filter(Boolean)); 
+      }
+  } catch (error) {
+      console.error(error);
   }
 }
+
 
   // console.log(cart)
 
@@ -56,7 +65,9 @@ auth.onAuthStateChanged((user)=>{
     cartShow();
     userName();
     return userName;
-  },[avail])
+  },[avail]);
+
+
  
 
 // console.log(cart)
@@ -75,7 +86,8 @@ auth.onAuthStateChanged((user)=>{
   }
 
   const handleDelete =async(id)=>{
-    const show = await axios.delete(`https://662742a7b625bf088c07cc38.mockapi.io/Cart/${id}`);
+    await axios.delete(`https://662742a7b625bf088c07cc38.mockapi.io/Cart/${id}`)
+      // console.log(res)
     cartShow();
   }
 

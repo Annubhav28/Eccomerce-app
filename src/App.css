@@ -107,9 +107,9 @@ header .menu{display: none;}
 }
 .category .card-content{margin-top: 2.5rem; cursor: pointer; border-top-left-radius: 6px; overflow: hidden; border-top-right-radius: 6px; transition: all .4s ease;}
 .category .card-content:hover{transform: scale(1.02);}
-.category .card-content .img{height: 190px; width: 200px; display: flex; align-items: center; justify-content: end;}
+.category .card-content .img{display: flex; align-items: center; justify-content: center;}
 .category .card-content .img img{
-    
+  
     object-fit: contain;
 }
 .category .card-text{padding:  10px 0; }
@@ -453,9 +453,6 @@ header .menu{display: block;}
 .pleaselogin{display: flex; align-items: center; justify-content: center; padding: 6rem 0;}
 .pleaselogin h2{font-size: 3vw; color: rgb(136, 177, 192);}
 
-@media screen and (min-width: 0){
-    .late{font-size: 1rem;}
-}
 
 
 

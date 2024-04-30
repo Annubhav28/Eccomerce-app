@@ -4,11 +4,10 @@ const is = {
   product: [],
   FilteredItem: [],
   Cart: [],
-  Email:""
 };
 
 const reducer = (state, action) => {
-  // console.log(action);
+  // console.log(state);
   switch (action.type) {
     case "PRODUCTS":
       return { ...state, product: action.payload,FilteredItem:action.payload };
@@ -23,29 +22,13 @@ const reducer = (state, action) => {
           : state.product.filter((item) => item.category === category);
       return { ...state, FilteredItem };
 
-    case "AddCart":
- 
-      const product = action.payload;
-      const itemAvail = state.Cart.find((item) => item.id === product.id);
-      
-     if(itemAvail) {
-      return state
-     }
-     else{
-      return {
-        ...state,Cart:[...state.Cart,product]
-      }
-     }
+    case "AddCart": 
+    // console.log(action.payload)
+    
+    return {...state,Cart:action.payload};
+    case "Reset" : return {...state,Cart:[]}
 
-     case "Removecart" : const rec = action.payload
-     const prod = state.Cart.filter((item)=>item.id !== rec.id);
-     return {
-      ...state,Cart:prod
-     }
-
-     case "Email" : 
-    //  console.log(action.payload)
-     return {...state,Email:action.payload};
+  
 
 
     default:

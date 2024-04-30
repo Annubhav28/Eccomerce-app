@@ -19,26 +19,37 @@ const handleId=(i)=>{
     nav(`/Products/${i}`);
 }
 
+const cartLength=async()=>{
+    if(avail !== null){
+        const res = await axios.get(`https://662742a7b625bf088c07cc38.mockapi.io/Cart?Email=${avail}`);
+        const newData = res.data;
+        // console.log(newData)
+        dispatch({type:"AddCart",payload:newData});
+    }
+}
+
+
 useEffect(()=>{
     const userName=async()=>{
         const auth = getAuth();
         auth.onAuthStateChanged((user)=>{
             if(user){
                 setUser(user.email)
-                dispatch({type: "Email", payload: user.email})
             }
             else{
                 setUser(null);
+                dispatch({type:"Reset"});
             }
         })
     }
    userName();
-},[]);
+   cartLength()
+   
+},[avail]);
 
 
 const handleCart=async(id)=>{
 //    console.log(id)
-        dispatch({type:"AddCart",payload:id});
         const res =await axios.get(`https://662742a7b625bf088c07cc38.mockapi.io/Cart`);
         // console.log(res)
         const data = res.data;
@@ -48,7 +59,7 @@ const handleCart=async(id)=>{
            await axios.post(`https://662742a7b625bf088c07cc38.mockapi.io/Cart`,{proid:id,Email:avail});
         }
         else{
-            console.log("already added")
+            console.log("already added");
         }
     }
 

@@ -19,8 +19,9 @@ const Cart=()=> {
 
   const cartShow=async()=>{
     if(avail !== null){
-        const res = await axios.get(`https://662742a7b625bf088c07cc38.mockapi.io/Cart?Email=${avail}`);
+        const res = await axios.get(`https://662742a7b625bf088c07cc38.mockapi.io/Cart?Email=${avail.email}`);
         const newData = res.data;
+        // console.log(newData)
 
         const cartData = await Promise.all(newData.map(async (item) => {
           const product = await axios.get(`https://dummyjson.com/products/${item.proid}`);
@@ -44,10 +45,11 @@ const Cart=()=> {
       const auth = getAuth();
 auth.onAuthStateChanged((user)=>{
   if(user){
-    setAvail(user.email)
+    setAvail(user)
   }
   else{
     setAvail(null)
+  
   }
 })
     }
@@ -74,9 +76,7 @@ auth.onAuthStateChanged((user)=>{
 
   const handleDelete =async(id)=>{
     const show = await axios.delete(`https://662742a7b625bf088c07cc38.mockapi.io/Cart/${id}`);
-    
-   
-
+    cartShow();
   }
 
 
@@ -85,49 +85,56 @@ auth.onAuthStateChanged((user)=>{
 
   return (
   <>
- <div className="container">
-  <div className="row column">
-    <div className="col-7 col-ml-12 col-mp-12">
-    <div className="shopping-cart">
-      <div className="shop-head">
-        <h3>Shopping Cart</h3>
-        <span>Item {cart.length}</span>
-      </div>
-{
-  cart.map((item,i)=>{
-    return(
-      <div className="cart-item" key={i}>
-      <div className="row align-center">
-       <div className="col-8 col-ip-4 col-ml-4 col-mp-4">
-         <div className="image-cart">
-           <img loading='lazy' src={item.thumbnail} alt={item.title} height="20" width="30" />
-           <div className="title">{item.title}</div>
+  {
+    avail ?
+     <div className="container">
+     <div className="row column">
+       <div className="col-7 col-ml-12 col-mp-12">
+       <div className="shopping-cart">
+         <div className="shop-head">
+           <h3>Shopping Cart</h3>
+           <span>Item {cart.length}</span>
          </div>
-       </div>
-       <div className="col-2 col-ip-4 col-ml-4 col-mp-4">
-         <div className="btn"><button onClick={handleDec}>-</button><span className="qua">{quantity}</span><button onClick={handleInc}>+</button></div>
-       </div>
-       <div className="col-2 col-ip-4 col-ml-4 col-mp-4">
-         <div className="price">
-           <span>$ {item.price}</span>
-           <button onClick={()=>handleDelete(item.Cartid)} className='remove'>X</button>
+   {
+     cart.map((item,i)=>{
+       return(
+         <div className="cart-item" key={i}>
+         <div className="row align-center">
+          <div className="col-8 col-ip-4 col-ml-4 col-mp-4">
+            <div className="image-cart">
+              <img loading='lazy' src={item.thumbnail} alt={item.title} height="20" width="30" />
+              <div className="title">{item.title}</div>
+            </div>
+          </div>
+          <div className="col-2 col-ip-4 col-ml-4 col-mp-4">
+            <div className="btn"><button onClick={handleDec}>-</button><span className="qua">{quantity}</span><button onClick={handleInc}>+</button></div>
+          </div>
+          <div className="col-2 col-ip-4 col-ml-4 col-mp-4">
+            <div className="price">
+              <span>$ {item.price}</span>
+              <button onClick={()=>handleDelete(item.Cartid)} className='remove'>X</button>
+            </div>
+          </div>
          </div>
+        </div>
+       )
+     })
+   }
        </div>
+       <div className="col-5"></div>
+       <div className="col-3">
+          <div className="total">
+        {/* <span className='totalprice'>Total:<span className="price">{total}.00$</span></span> */}
+       </div>
+          </div>
       </div>
      </div>
-    )
-  })
-}
-    </div>
-    <div className="col-5"></div>
-    <div className="col-3">
-       <div className="total">
-     {/* <span className='totalprice'>Total:<span className="price">{total}.00$</span></span> */}
-    </div>
-       </div>
    </div>
-  </div>
-</div>
+   : 
+       <div className="pleaselogin">
+         <h2>Please signup to see the Cart</h2>
+       </div>
+  }
 
 
 

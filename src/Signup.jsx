@@ -46,16 +46,7 @@ const Signup = () => {
     }
   }
 
-  const handleguest = async () => {
-    try {
-      const user = await signInAnonymously(auth);
-      navigate("/");
-    } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.error(errorCode, errorMessage);
-    };
-  }
+ 
 
   return (
     <>
@@ -74,10 +65,7 @@ const Signup = () => {
 
               {active === "Login" ? <button onClick={handleLogin}>Login</button> : <button onClick={handleSignup}>Sign Up</button>}
 
-              <span className="localguest">
-                <span className="Or">Or</span>
-                <span className="anonymous">Continue as <span onClick={handleguest} className="guest">Guest</span></span>
-              </span>
+
             </div>
           </div>
           <div className="col-4 col-ip-3 col-mp-1"></div>

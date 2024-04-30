@@ -450,6 +450,8 @@ header .menu{display: block;}
    
     
 }
+.pleaselogin{display: flex; align-items: center; justify-content: center; padding: 6rem 0;}
+.pleaselogin h2{font-size: 3vw; color: rgb(136, 177, 192);}
 
 @media screen and (min-width: 0){
     .late{font-size: 1rem;}

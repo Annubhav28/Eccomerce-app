@@ -7,7 +7,7 @@ import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 
 const Navbar = () => {
   const{state} = useContext(myContext);
-  // console.log(state);
+  const[count,setCount]=useState(0);
   const[istoggle,setToggle]=useState(false)
   const[user, setUser] = useState(null);
  
@@ -29,8 +29,9 @@ const handleSignIn=()=>{
         setUser(user);
       }
     });
+    setCount(state.Cart.length);
     return unmount;
-  },[]);
+  },[state.Cart]);
 
   const handleSignOut = () => {
     const auth = getAuth();
@@ -78,11 +79,7 @@ const handleSignIn=()=>{
             <div className="btn">
               {user ? (
                 <>
-                  {user.isAnonymous ? (
-                    <span>Hello Guest</span>
-                  ) : (
-                    <span>{user.displayName}</span>
-                  )}
+                  <span>{user.displayName}</span>
                   <button onClick={handleSignOut} className="signout-btn">
                     Sign Out
                   </button>
@@ -90,10 +87,10 @@ const handleSignIn=()=>{
               ) : <button onClick={handleSignIn}>Sign Up</button>}
             </div>
             {
-              user ?  <span onClick={handleNav} className="cart">
+               <span onClick={handleNav} className="cart">
               <i className="ri-shopping-cart-line"></i>
-              <sub>{user && state.Cart && state.Cart.length}</sub>
-            </span> : <div></div>
+              <sub>{user? count : 0}</sub>
+            </span> 
             }
             </div>
           </div>

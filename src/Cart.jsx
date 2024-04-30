@@ -9,41 +9,56 @@ const Cart=()=> {
   const[cart,setCart]=useState([])
   const[quantity,setquantity]=useState(1)
   const{state,dispatch}=useContext(myContext);
+  const[avail,setAvail]=useState(null);
+  // console.log(avail)
+
 
 
   
 // console.log(state);
 
   const cartShow=async()=>{
-    const res = await axios.get(`https://662742a7b625bf088c07cc38.mockapi.io/Cart?${state.User}`);
-const newData= res.data;
-// console.log(newData)
-// console.log(newData)
-setCart(newData);
+    if(avail !== null){
+        const res = await axios.get(`https://662742a7b625bf088c07cc38.mockapi.io/Cart?Email=${avail}`);
+        const newData = res.data;
+
+        const cartData = await Promise.all(newData.map(async (item) => {
+          const product = await axios.get(`https://dummyjson.com/products/${item.proid}`);
+          return { ...product.data, Cartid: item.id };
+        }));
+  
+        setCart(cartData); 
   }
+}
+
+  // console.log(cart)
 
 
-const total = cart.reduce((acc, item)=> acc + (item.price * quantity),0)
 // console.log(total);
 
 // console.log(cart)
 
 
   useEffect(()=>{
-  
+    const userName = async()=>{
+      const auth = getAuth();
+auth.onAuthStateChanged((user)=>{
+  if(user){
+    setAvail(user.email)
+  }
+  else{
+    setAvail(null)
+  }
+})
+    }
     cartShow();
-  },[])
+    userName();
+    return userName;
+  },[avail])
  
 
 // console.log(cart)
-  const handleDelete=async(i)=>{
-    // console.log(i)
-      dispatch({ type: "Removecart", payload: i });
-      const response = await axios.delete(`https://662742a7b625bf088c07cc38.mockapi.io/Cart/${i}`)
-      setCart(prevCart => prevCart.filter((item) => item.id !== i));
-      console.error("Error deleting item:", error);
-
-  }
+ 
 
   const handleInc=()=>{
     if(quantity >=1){
@@ -55,6 +70,13 @@ const total = cart.reduce((acc, item)=> acc + (item.price * quantity),0)
     if(quantity>1){
       setquantity(quantity-1)
     }
+  }
+
+  const handleDelete =async(id)=>{
+    const show = await axios.delete(`https://662742a7b625bf088c07cc38.mockapi.io/Cart/${id}`);
+    
+   
+
   }
 
 
@@ -88,7 +110,7 @@ const total = cart.reduce((acc, item)=> acc + (item.price * quantity),0)
        <div className="col-2 col-ip-4 col-ml-4 col-mp-4">
          <div className="price">
            <span>$ {item.price}</span>
-           <button onClick={()=>handleDelete(item.id)} className='remove'>X</button>
+           <button onClick={()=>handleDelete(item.Cartid)} className='remove'>X</button>
          </div>
        </div>
       </div>
@@ -100,7 +122,7 @@ const total = cart.reduce((acc, item)=> acc + (item.price * quantity),0)
     <div className="col-5"></div>
     <div className="col-3">
        <div className="total">
-     <span className='totalprice'>Total:<span className="price">{total}.00$</span></span>
+     {/* <span className='totalprice'>Total:<span className="price">{total}.00$</span></span> */}
     </div>
        </div>
    </div>

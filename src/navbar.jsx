@@ -21,7 +21,7 @@ const handleSignIn=()=>{
 }
 const updateCount=()=>{
   // console.log(state.Cart.length)
-  setCount(state.Cart.length);
+  setCount(state.Cart);
 }
 
 
@@ -94,7 +94,7 @@ const updateCount=()=>{
             {
                <span onClick={handleNav} className="cart">
               <i className="ri-shopping-cart-line"></i>
-              <sub>{user? count : 0}</sub>
+              <sub>{user && count }</sub>
             </span> 
             }
             </div>

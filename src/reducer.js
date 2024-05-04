@@ -20,12 +20,16 @@ const reducer = (state, action) => {
         category === "All"
           ? state.product
           : state.product.filter((item) => item.category === category);
+          console.log(FilteredItem);
       return { ...state, FilteredItem };
 
     case "AddCart": 
     // console.log(action.payload)
     
     return {...state,Cart:action.payload};
+
+    case "Removecart":
+      return{...state,Cart:action.payload}
     case "Reset" : return {...state,Cart:[]}
 
   

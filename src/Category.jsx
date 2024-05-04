@@ -19,19 +19,7 @@ const handleId=(i)=>{
     nav(`/Products/${i}`);
 }
 
- const cartLength=async()=>{
-    try{
-        if(avail !== null){
-            const res = await axios.get(`https://662742a7b625bf088c07cc38.mockapi.io/Cart?Email=${avail}`);
-            const newData = res.data;
-            // console.log(newData)
-            dispatch({type:"AddCart",payload:newData});
-        }
-    }
-    catch(error){
-        console.log(error)
-    }
-}
+ 
 
 
 useEffect(()=>{
@@ -48,25 +36,42 @@ useEffect(()=>{
         })
     }
    userName();
-   cartLength()
+
    
 },[avail]);
 
 
-const handleCart=async(id)=>{
-//    console.log(id)
-        const res =await axios.get(`https://662742a7b625bf088c07cc38.mockapi.io/Cart`);
-        // console.log(res)
-        const data = res.data;
-        // console.log(data)
-    const itemAvail = data.find((item)=>item.proid === id && item.Email === avail);
-        if(!itemAvail){ 
-           await axios.post(`https://662742a7b625bf088c07cc38.mockapi.io/Cart`,{proid:id,Email:avail});
-        }
-        else{
+const handleCart = async (id) => {
+    try {
+      
+        const [res1, res2] = await Promise.all([
+            axios.get(`https://662742a7b625bf088c07cc38.mockapi.io/Cart`),
+            axios.get(`https://662742a7b625bf088c07cc38.mockapi.io/Cart?Email=${avail}`)
+        ]);
+
+        const data1 = res1.data;
+        const data2 = res2.data.length;
+        dispatch({ type: "AddCart", payload: data2 });
+    
+        const itemAvail = data1.find((item) => item.proid === id && item.Email === avail);
+        if (!itemAvail) {
+            await axios.post(`https://662742a7b625bf088c07cc38.mockapi.io/Cart`, { proid: id, Email: avail });
+        } else {
             console.log("already added");
         }
+
+    } catch (error) {
+        if (error.response && error.response.status === 404) {
+            console.log("Email not found in the API");
+            
+        } else {
+            
+            console.error("Error:", error);
+        }
     }
+
+}
+
 
 
 

@@ -86,8 +86,13 @@ auth.onAuthStateChanged((user)=>{
   }
 
   const handleDelete =async(id)=>{
-    await axios.delete(`https://662742a7b625bf088c07cc38.mockapi.io/Cart/${id}`)
-      // console.log(res)
+    const [res1,res2]= await Promise.all([
+     axios.delete(`https://662742a7b625bf088c07cc38.mockapi.io/Cart/${id}`),
+     axios.get(`https://662742a7b625bf088c07cc38.mockapi.io/Cart?Email=${avail.email}`)
+    ])
+    const data = res2.data.length;
+    console.log(data)
+    dispatch({type:"Removecart",payload:data})
     cartShow();
   }
 
